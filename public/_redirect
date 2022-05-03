@@ -1,1 +1,1 @@
-/ id=:id /breweries 301
+/ id=:id /breweries/:id 301
