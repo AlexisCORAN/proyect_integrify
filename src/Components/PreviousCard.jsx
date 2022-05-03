@@ -13,7 +13,7 @@ const PreviousCard = ({id, name, brewery_type, city}) => {
                         City: {city}
                     </Typography>
                     <CardActions>
-                        <Button to={`/breweries/${id}`} size="small" component={RouterLink}>More</Button>
+                        <Button to={`/${id}`} size="small" component={RouterLink}>More</Button>
                     </CardActions>
                 </CardContent>
             </Card>
