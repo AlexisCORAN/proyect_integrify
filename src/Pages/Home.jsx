@@ -1,31 +1,63 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Components/Header";
 import Grid from '@mui/material/Grid';
-import {Container} from '@mui/material';
+import {Button, Container, TextField } from '@mui/material';
 import PreviousCard from '../Components/PreviousCard';
 const Home = () => {
-  const [brewery, setBrewery] = useState([]);
+  const [breweries, setBreweries] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-      const FetchData = async () => {
-          const response = await fetch(`https://api.openbrewerydb.org/breweries/`)
-          const brewery =  await response.json()
-          setBrewery(brewery);
-          console.log(brewery);
-      }
-      FetchData();
+      
+    FetchData().catch(err => {
+      setError(err.message)
+    });
   },[]);
+
+  const FetchData = async () => {
+    const response = await fetch(`https://api.openbrewerydb.org/breweries/`)
+    if (!response.ok) {
+      throw new Error(`An error has occured: ${response.status}`);
+    }
+    const data =  await response.json()
+    setBreweries(data);
+  }
 
     return (
       
       <Container>
-        <Header></Header>
+       <Container>
+         <div style={{
+           maxWidth: "50%",
+           marginRight: "auto",
+           marginLeft: "auto"
+         }}>
+         <form style={{
+        display: "flex",
+        flexDirection: "row",
+        padding: 20,
+     }}>
+        <TextField
+        placeholder="Filter"
+        type="text"
+        style={{
+          flexGrow: "2"
+        }}
+        />
+        <Button variant="contained" disableElevation> Search </Button>
+        </form>
+         </div>
+        
+      </Container>
+        {error && <p style={{
+          textAlign:"center"
+        }}>{error}</p>}
         <Grid container spacing={4} style={{
           marginBottom: "30px"
         }}>
-          {brewery.map(({id, name, brewery_type, city}) => (
-            <Grid item key={id} xs={12} md={6} lg={4}>
-              <PreviousCard id={id} name={name} brewery_type={brewery_type} city={city}></PreviousCard>
+          
+          {breweries.map((b) => (
+            <Grid item key={b.id} xs={12} md={6} lg={4}>
+              <PreviousCard id={b.id} name={b.name} brewery_type={b.brewery_type} city={b.city} state={b.state}></PreviousCard>
             </Grid>
           ))}
         </Grid>

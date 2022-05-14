@@ -2,7 +2,7 @@ import { Card, CardHeader, CardContent, Typography, Button, CardActions} from "@
 import {Link as RouterLink} from "react-router-dom";
 import React from "react";
 
-const PreviousCard = ({id, name, brewery_type, city}) => {
+const PreviousCard = ({id, name, brewery_type, city, state}) => {
     return (
         <div>
             <Card elevation={1} key={id}>
@@ -11,6 +11,8 @@ const PreviousCard = ({id, name, brewery_type, city}) => {
                 <CardContent>
                     <Typography variant="body3" color="textsecondary">
                         City: {city}
+                        <br/>
+                        State: {state}
                     </Typography>
                     <CardActions>
                         <Button to={`/${id}`} size="small" component={RouterLink}>More</Button>

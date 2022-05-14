@@ -14,7 +14,8 @@ const Header = () => {
         flexDirection: "row",
         padding: 20,
      }}>
-        <TextField style={{
+        <TextField 
+        style={{
           flexGrow: "2"
         }}/>
         <Button variant="contained" disableElevation> Search </Button>
