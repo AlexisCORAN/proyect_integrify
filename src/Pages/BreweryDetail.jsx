@@ -27,16 +27,16 @@ function BrewDetail() {
           });
     },[params.id]);
 
+
     return ( 
-    <Container className="container" maxWidth="sm" style={{
-        marginTop: "auto",
-        marginBottom: "auto",
-        height: "100%",
-    }}>
-        <FullCard error={error} brewery={brewery} loading={loading}></FullCard>
-            </Container>
-            
-         );
+        <Container className="container" maxWidth="sm" style={{
+            marginTop: "auto",
+            marginBottom: "auto",
+            height: "100%",
+        }}>
+            <FullCard error={error} brewery={brewery} loading={loading}></FullCard>
+        </Container>
+    );
 
 }
 
